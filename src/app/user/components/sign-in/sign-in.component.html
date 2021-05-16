@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-sm-8 offset-sm-2 mt-4">
+    <p-card>
+      <!-- Title -->
+      <h2 class="text-center text-uppercase">
+        Sign In
+      </h2>
+
+      <!-- Sign In Form -->
+      <form [formGroup]="signInForm" (ngSubmit)="onSubmit()" class="form-sign-in">
+        <!-- User Id -->
+        <div class="p-field mb-2" [ngClass]="{'error-field': formSubmitted && f.userId.errors}">
+          <label>User Id</label>
+          <br />
+          <input type="text" pInputText formControlName="userId" class="w-100" />
+          <small *ngIf="formSubmitted && f.userId.errors?.required" class="p-error">User Id is required.</small>
+        </div>
+
+        <!-- Password -->
+        <div class="p-field mb-2" [ngClass]="{'error-field': formSubmitted && f.password.errors}">
+          <label>Password</label>
+          <br />
+          <p-password formControlName="password" [toggleMask]="true" [feedback]="false" inputStyleClass="w-100"
+            styleClass="w-100">
+          </p-password>
+          <small *ngIf="formSubmitted && f.password.errors?.required" class="p-error">Password is required.</small>
+        </div>
+
+        <!-- Buttons -->
+        <div class="mb-4 mt-3 text-center">
+          <button pButton type="submit" label="Sign In" class="w-100"></button>
+        </div>
+
+        <!-- Sign Up Link -->
+        <div class="text-center">
+          Don't have an account? <a routerLink="/user/sign-up">Sign Up</a>
+        </div>
+      </form>
+    </p-card>
+  </div>
+</div>
+
+

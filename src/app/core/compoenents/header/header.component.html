@@ -1,0 +1,61 @@
+<div class="d-flex justify-content-between align-items-center header sticky-top">
+  <div class="p-2 flex-fill title"><a routerLink="/">Buy Furniture</a></div>
+  <div class="p-2">
+    <ul>
+      <li>
+        <a routerLink="/">
+          <i class="fas fa-home"></i>
+          <br />
+          Home
+        </a>
+      </li>
+      <li>
+        <a #profile (click)="opProfile.toggle($event)">
+          <i class="fas fa-user"></i>
+          <br />
+          <span>Profile</span>
+        </a>
+        <p-overlayPanel #opProfile>
+          <ng-template pTemplate>
+            <ng-container *ngIf="!usersService.isUserLoggedIn()">
+              <div class="text-center">
+                <a routerLink="user/sign-in" (click)="opProfile.hide()">Sign In</a>
+                /
+                <a routerLink="user/sign-up" (click)="opProfile.hide()">Sign Up</a>
+              </div>
+              <div class="text-center">
+                To access your account & manage orders
+              </div>
+            </ng-container>
+            <ng-container *ngIf="usersService.isUserLoggedIn()">
+              <div class="text-center">
+                <h6>
+                  {{usersService.getLoggedInUser().firstName}}
+                  {{usersService.getLoggedInUser().lastName}}
+                </h6>
+              </div>
+              <div class="text-center">
+                <a routerLink='/' (click)="opProfile.hide();onSignOut()">Sign Out</a>
+              </div>
+            </ng-container>
+          </ng-template>
+        </p-overlayPanel>
+      </li>
+      <li>
+        <a routerLink="cart">
+          <i class="fas fa-shopping-cart"></i>
+          <br />
+          <span>Cart</span>
+        </a>
+      </li>
+      <li>
+        <a>
+          <i class="fas fa-truck"></i>
+          <br />
+          <span>Track</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+<p-toast position="bottom-right"></p-toast>

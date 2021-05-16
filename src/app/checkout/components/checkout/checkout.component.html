@@ -1,0 +1,75 @@
+<h2 class="mt-3">Delivery Details</h2>
+
+<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()" class="form-checkout">
+  <div class="row">
+    <div class="col-md-6">
+      <!-- First Name -->
+      <div class="mb-2" [ngClass]="{'error-field': formSubmitted && f.firstName.errors}">
+        <label>First Name</label>
+        <br />
+        <input type="text" pInputText formControlName="firstName" class="w-100" />
+        <small *ngIf="formSubmitted && f.firstName.errors?.required" class="p-error">
+          First Name is required.
+        </small>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <!-- Last Name -->
+      <div class="mb-2" [ngClass]="{'error-field': formSubmitted && f.lastName.errors}">
+        <label>LastName</label>
+        <br />
+        <input type="text" pInputText formControlName="lastName" class="w-100" />
+        <small *ngIf="formSubmitted && f.lastName.errors?.required" class="p-error">
+          Last Name is required.
+        </small>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <!-- Phone Number -->
+      <div class="mb-2" [ngClass]="{'error-field': formSubmitted && f.phoneNumber.errors}">
+        <label>Phone Number</label>
+        <br />
+        <input type="text" pInputText formControlName="phoneNumber" class="w-100" />
+        <small *ngIf="formSubmitted && f.phoneNumber.errors?.required" class="p-error">
+          Phone Number is required.
+        </small>
+        <small *ngIf="formSubmitted && f.phoneNumber.errors?.pattern" class="p-error">
+          Phone Number is not valid.
+        </small>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <!-- Email -->
+      <div class="mb-2" [ngClass]="{'error-field': formSubmitted && f.email.errors}">
+        <label>Email</label>
+        <br />
+        <input type="text" pInputText formControlName="email" class="w-100" />
+        <small *ngIf="formSubmitted && f.email.errors?.required" class="p-error">
+          Email is required.
+        </small>
+        <small *ngIf="formSubmitted && f.email.errors?.email" class="p-error">
+          Email is not valid.
+        </small>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <!-- Address -->
+      <div class="mb-2" [ngClass]="{'error-field': formSubmitted && f.address.errors}">
+        <label>Address</label>
+        <br />
+        <textarea pInputTextarea formControlName="address" class="w-100" [rows]="3"></textarea>
+        <small *ngIf="formSubmitted && f.address.errors?.required" class="p-error">
+          Address is required.
+        </small>
+      </div>
+    </div>
+  </div>
+  <div class="text-center mt-2">
+    <button pButton type="submit" label="Submit"></button>
+  </div>
+
+</form>

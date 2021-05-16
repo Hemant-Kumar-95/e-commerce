@@ -1,0 +1,8 @@
+.p-inputtext.ng-dirty.ng-invalid {
+  border: 1px solid #ced4da;
+}
+
+.form-sign-in .error-field input,
+.form-sign-in .error-field ::ng-deep input {
+  border: 1px solid red;
+}

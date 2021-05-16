@@ -1,0 +1,22 @@
+.product img {
+  width: 100%;
+}
+
+.product .name {
+  font-size: 2rem;
+  color: #666666;
+}
+
+.product .description {
+  font-size: 1.25rem;
+  color: #999999;
+}
+
+.product .price {
+  font-size: 1.5rem;
+  color: darkorange;
+}
+
+.product .quantity ::ng-deep .p-inputnumber-input{
+  width:50px;
+}

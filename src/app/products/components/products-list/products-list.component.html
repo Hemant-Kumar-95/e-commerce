@@ -1,0 +1,56 @@
+<div class="row">
+  <div class="col-sm-2">
+    <div class="filter-card mt-2">
+      <div class="mb-3">
+        <span class="p-input-icon-left">
+          <i class="pi pi-search"></i>
+          <input type="text" class="p-inputtext-sm" class="w-100" placeholder="Search" pInputText
+            [(ngModel)]="searchText" (ngModelChange)="search()" />
+        </span>
+      </div>
+      <h4 class="mb-4">
+        Categories
+      </h4>
+      <div *ngFor="let category of filteredCategories" class="mb-3">
+        <p-checkbox [(ngModel)]="category.isSelected" binary="true" inputId="binary" label={{category.name}}>
+        </p-checkbox>
+      </div>
+      <div class="mt-2 text-center">
+        <p-button label="Apply" styleClass="p-button-sm" (click)="applyFilter()"></p-button>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-10">
+    <div class="row pt-3" *ngIf="products && products.length > 0">
+      <div class="col-lg-3 col-md-4 col-sm-6 product-card-container" *ngFor="let product of products">
+        <div class="product-card" (click)="onProductCardClick(product)">
+          <div class="text-center">
+            <div class="mb-1">
+              <img src="{{product.imageUrl}}">
+            </div>
+            <div class="name">
+              {{product.name}}
+            </div>
+            <div class="mb-2 description">
+              {{product.description}}
+            </div>
+            <div class="mb-2 rating">
+              <p-rating [ngModel]="product.rating" readonly="true" stars="5" [cancel]="false"></p-rating>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="price">{{product.price | currency:'INR':'symbol-narrow':'1.0-0'}}</div>
+            </div>
+            <div class="col-md-6 text-right">
+              <p-tag styleClass="p-mr-2" icon="pi pi-tag" severity="info" [value]="product.categoryName"></p-tag>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-5" *ngIf="!products || products.length == 0">
+      No products found.
+    </div>
+  </div>
+</div>

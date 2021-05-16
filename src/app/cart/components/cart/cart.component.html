@@ -1,0 +1,42 @@
+<div *ngIf="cart && cart.length > 0" class="mt-3">
+  <div *ngFor="let item of cart; let i = index">
+    <div *ngIf="item.product" class="d-flex flex-row align-items-center cart-item p-2 mb-3">
+      <div>
+        <img class="mr-3" src="{{item.product.imageUrl}}" />
+      </div>
+      <div class="flex-fill">
+        <div class="name">
+          {{item.product.name}}
+        </div>
+        <div class="description">
+          {{item.product.description}}
+        </div>
+      </div>
+      <div class="total-amount pl-3 pr-3">
+        {{item.product.price | currency:'INR':'symbol-narrow':'1.0-0'}} *
+        <p-inputNumber [(ngModel)]="item.quantity" [showButtons]="true" buttonLayout="horizontal"
+          spinnerMode="horizontal" [step]="1" [min]="1" [max]="100" decrementButtonClass="p-button-danger"
+          incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus"
+          (ngModelChange)="onAmountChange(item,$event)">
+        </p-inputNumber>
+        = {{(item.product.price * item.quantity) | currency:'INR':'symbol-narrow':'1.0-0'}}
+      </div>
+      <div class="pl-3 pr-3">
+        <button pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger"
+          (click)="onRemoveItem(i)"></button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="getToalAmount()" class="text-right">
+    <div>
+      Total Amount: {{getToalAmount() | currency:'INR':'symbol-narrow':'1.0-0'}}
+    </div>
+    <div>
+      <p-button label="Checkout" (click)="checkout()"></p-button>
+    </div>
+  </div>
+</div>
+<div *ngIf="!cart || cart.length == 0" class="text-center mt-5">
+  <h4>Your cart is empty</h4>
+</div>

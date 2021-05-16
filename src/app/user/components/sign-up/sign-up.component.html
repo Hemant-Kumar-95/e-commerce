@@ -1,0 +1,103 @@
+<div class="row">
+  <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-sm-8 offset-sm-2 mt-4">
+    <p-card>
+      <!-- Title -->
+      <h2 class="text-center text-uppercase">
+        Sign Up
+      </h2>
+
+      <!-- Sign Up Form -->
+      <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" class="form-sign-up">
+        <!-- User Id -->
+        <div class="mb-2" [ngClass]="{'error-field': formSubmitted && f.userId.errors}">
+          <label>User Id</label>
+          <br />
+          <input type="text" pInputText formControlName="userId" class="w-100" />
+          <small *ngIf="formSubmitted && f.userId.errors?.required" class="p-error">
+            User Id is required.
+          </small>
+          <small *ngIf="formSubmitted && f.userId.errors?.notAvailable" class="p-error">
+            User Id is not not available.
+          </small>
+        </div>
+
+        <!-- First Name -->
+        <div class="mb-2" [ngClass]="{'error-field': formSubmitted && f.firstName.errors}">
+          <label>First Name</label>
+          <br />
+          <input type="text" pInputText formControlName="firstName" class="w-100" />
+          <small *ngIf="formSubmitted && f.firstName.errors?.required" class="p-error">
+            First Name is required.
+          </small>
+        </div>
+
+        <!-- Last Name -->
+        <div class="mb-2" [ngClass]="{'error-field': formSubmitted && f.lastName.errors}">
+          <label>Last Name</label>
+          <br />
+          <input type="text" pInputText formControlName="lastName" class="w-100" />
+          <small *ngIf="formSubmitted && f.lastName.errors?.required" class="p-error">
+            Last Name is required.
+          </small>
+        </div>
+
+        <!-- Password -->
+        <div class="mb-2" [ngClass]="{'error-field': formSubmitted && f.password.errors}">
+          <label>Password</label>
+          <br />
+          <p-password formControlName="password" [toggleMask]="true" [feedback]="false" inputStyleClass="w-100"
+            styleClass="w-100">
+            <ng-template pTemplate="footer">
+              <p class="p-mt-2">Suggestions</p>
+              <ul class="p-pl-2 p-ml-2 p-mt-0" style="line-height: 1.5">
+                <li>At least one lowercase</li>
+                <li>At least one uppercase</li>
+                <li>At least one numeric</li>
+                <li>Minimum 8 characters</li>
+              </ul>
+            </ng-template>
+          </p-password>
+          <small *ngIf="formSubmitted && f.password.errors?.required" class="p-error">
+            Password is required.
+          </small>
+          <small *ngIf="formSubmitted && f.password.errors?.pattern" class="p-error">
+            Password should have minimum 8 characters and should have at least one lowecase, one uppercase and one
+            numeric character.
+          </small>
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="mb-2" [ngClass]="{'error-field': formSubmitted && f.confirmPassword.errors?.required}">
+          <label>Confirm Password</label>
+          <br />
+          <p-password formControlName="confirmPassword" [toggleMask]="true" [feedback]="false" inputStyleClass="w-100"
+            styleClass="w-100">
+          </p-password>
+          <small *ngIf="formSubmitted && f.confirmPassword.errors?.required" class="p-error">
+            Password is required.
+          </small>
+          <small *ngIf="formSubmitted && f.confirmPassword.errors?.mustMatch" class="p-error">
+            Password does not match.
+          </small>
+        </div>
+
+        <!-- Buttons -->
+        <div class="mb-4 mt-3 text-center">
+          <span class="p-buttonset">
+            <!-- Sign Up Button -->
+            <button pButton type="submit" label="Sign Up" class="w-50"></button>
+
+            <!-- Reset Button -->
+            <button pButton type="reset" label="Reset" class="p-button-outlined p-button-secondary w-50"
+              (click)="onReset()"></button>
+          </span>
+        </div>
+
+        <!-- Sign In Link -->
+        <div class="text-center">
+          Already have an account? <a routerLink="/user/sign-in">Sign In</a>
+        </div>
+      </form>
+    </p-card>
+  </div>
+</div>
